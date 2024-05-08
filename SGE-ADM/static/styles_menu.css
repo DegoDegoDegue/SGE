@@ -1,0 +1,85 @@
+body {
+    background-color: #FD5610;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 150px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center; /* Centralizar horizontalmente */
+}
+
+.horizontal-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 10px;
+}
+
+.horizontal-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 10px;
+    display: flex; /* Adiciona um display flex para aplicar as propriedades flexíveis */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.horizontal-menu li a {
+    margin: 0;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.horizontal-menu li a:hover {
+    background-color: #111;
+}
+
+/* Estilo para o ícone dentro do link */
+.horizontal-menu li a i {
+    margin-right: 5px;
+}
+
+/* Estilo para o submenu */
+.horizontal-menu .submenu ul {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    width: 200px;
+}
+
+.horizontal-menu .submenu:hover ul {
+    display: block;
+}
+
+.horizontal-menu .submenu ul li {
+    float: none;
+    position: relative;
+}
+
+.horizontal-menu .submenu ul li a {
+    padding: 10px 15px;
+}
+
+.horizontal-menu .submenu ul li a:hover {
+    background-color: #111;
+}
+
+/* Estilo para o texto do submenu */
+.horizontal-menu .submenu ul li a span {
+    margin-left: 5px;
+}

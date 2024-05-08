@@ -1,0 +1,61 @@
+/* Estilos para itens em baixo estoque */
+.low-stock {
+    color: red;
+}
+
+.pagina {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhamento do conteúdo no topo */
+    min-height: 100vh; /* Altura mínima para ocupar toda a altura da tela */
+    padding-top: 20px; /* Espaçamento superior para evitar que o conteúdo fique muito próximo ao topo */
+}
+
+.conteudo {
+    background-color: white;
+    width: auto;
+    max-width: 800px;
+    border-radius: 20px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    box-sizing: border-box; /* Incluir padding e borda na largura total */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Permite que o conteúdo cresça para ocupar o espaço restante */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical caso o conteúdo seja maior que a altura disponível */
+}
+
+
+/* Estilos para o título */
+.conteudo h1 {
+    text-align: center; /* Alinhamento central do título */
+}
+
+/* Estilos para o formulário */
+.conteudo form {
+    text-align: center; /* Alinhamento central do formulário */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Estilos para a tabela */
+.conteudo table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Colapso da borda da tabela */
+}
+
+/* Estilos para as células da tabela */
+.conteudo th,
+.conteudo td {
+    padding: 8px; /* Espaçamento interno das células */
+    border-bottom: 1px solid #ddd; /* Borda inferior com cor cinza claro */
+    text-align: left; /* Alinhamento do texto à esquerda */
+}
+
+/* Estilos para as células do cabeçalho da tabela */
+.conteudo th {
+    background-color: #f2f2f2; /* Cor de fundo do cabeçalho */
+}
+
+/* Estilos para as linhas ímpares da tabela */
+.conteudo tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Cor de fundo das linhas ímpares */
+}

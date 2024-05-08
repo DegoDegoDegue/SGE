@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionário</title>
+    <!-- Adicione o link para a biblioteca Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Link para o seu arquivo de estilo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_adm.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+</head>
+<body>
+
+    <div class="header">
+        <img class="logo" src="{{ url_for('static', filename='img/logo/maxi.png') }}" alt="Logo Maxi">
+    </div>
+
+    <!-- Menu horizontal -->
+    <ul class="horizontal-menu">
+        <li><a href="{{ url_for('adm_index_bp.index') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <!-- Funcioários -->
+        <li class="submenu"><a href="#"><i class="fas fa-users"></i><span>Funcioários</span></a>
+            <!-- Submenu para administrar Funcioários e Funcionários -->
+            <ul>
+                <li><a href="{{ url_for('adm_func_bp.exibir_funcionarios') }}">Administrar Funcionários</a></li>
+                <li><a href="{{ url_for('cad_func_bp.cadastro_funcionario') }}">Cadastrar Funcionário</a></li>
+            </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="submenu"><a href="#"><i class="fas fa-box"></i><span>Produtos</span></a>
+            <!-- Submenu para cadastrar produtos e administrar produtos -->
+            <ul>
+                <li><a href="{{ url_for('cad_pro_bp.cadastro_produto') }}">Cadastrar Produto</a></li>
+                <li><a href="{{ url_for('cad_classe_bp.cadastro_classe') }}">Cadastrar Classe de Produtos</a></li>
+                <li><a href="{{ url_for('cad_marca_bp.cadastro_marca') }}">Cadastrar marca de Produtos</a></li>
+                <li><a href="{{ url_for('cad_CA_bp.cadastro_CA') }}">Cadastrar CA de Produtos</a></li>
+                <li><a href="{{ url_for('adm_pro_bp.produtos_cadastrados') }}">Produtos Cadastrados</a></li>
+            </ul>
+        </li>
+        <!-- Movimentações de estoque -->
+        <li class="submenu"><a href="#"><i class="fas fa-random"></i><span>Movimentações de estoque
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('movimento_man_bp.registrar_movimento') }}">Movimento Manual</a></li>
+            <li><a href="{{ url_for('adm_mov_bp.verificar_movimentos') }}">Verificar Movimentos</a></li>
+            <li><a href="{{ url_for('adm_mov_func_bp.movimentos_funcionario') }}">Movimentos de Funcionários</a></li>
+        </ul>
+        <!--Solicitações -->
+        <li class="submenu"><a href="#"><i class="fas fa-list-alt"></i><span>Solicitações
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('solic_epi_bp.nova_solicitacao') }}">Solicitar EPI</a></li>
+        </ul>
+    </ul>
+    
+
+ <div class="pagina">
+    <div class="conteudo">
+    <h1>{{ produto[1] }}</h1>
+
+    <form action="{{ url_for('perf_pro_bp.detalhes_produto') }}" method="POST">
+        <input type="hidden" name="produto_id" value="{{ produto[0] }}">
+    
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" id="nome" name="nome" value="{{ produto[1] }}"><br><br>
+    
+        <!-- Aqui você deve adicionar menus suspensos para selecionar a marca, o CA e a classe do produto -->
+        <label for="marca">Marca:</label>
+        <select id="marca" name="marca_id">
+            {% for marca in marcas %}
+                <option value="{{ marca[0] }}" {% if marca[0] == produto[2] %}selected{% endif %}>{{ marca[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+    
+        <label for="ca">CA:</label>
+        <select id="ca" name="ca_id">
+            {% for ca in cas %}
+                <option value="{{ ca[0] }}" {% if ca[0] == produto[3] %}selected{% endif %}>{{ ca[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+    
+        <label for="classe">Classe:</label>
+        <select id="classe" name="classe_id">
+            {% for classe in classes %}
+                <option value="{{ classe[0] }}" {% if classe[0] == produto[4] %}selected{% endif %}>{{ classe[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+    
+        <input type="submit" name="submit" value="Atualizar Dados">
+    </form>
+    
+    
+    </div>
+         </div>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* Estilo para células de estoque baixo */
+.low-stock {
+    color: red;
+    text-align: center; /* Alinha o texto ao centro */
+}
+
+/* Estilo para a página */
+.pagina {
+    display: flex;
+    justify-content: center; /* Alinha os elementos horizontalmente no centro */
+    align-items: center; /* Alinha os elementos verticalmente no centro */
+    height: 125%; /* 100% da altura da janela de visualização */
+}
+
+/* Estilo para o conteúdo */
+.conteudo {
+    background-color: white;
+    width: 90%; /* Definir a largura como 90% */
+    max-width: 500px; /* Limitar a largura máxima */
+    padding: 20px; /* Adicionar preenchimento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilo para o título */
+.conteudo h1 {
+    text-align: center; /* Alinha o texto ao centro */
+    margin-bottom: 10px; /* Adiciona espaço inferior */
+}
+
+/* Estilo para a linha horizontal */
+.conteudo hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc; /* Cor da linha */
+    margin: 10px 0; /* Adiciona espaço superior e inferior */
+}
+
+
+
+/* Estilo para INATIVOS -----------------------------------------*/
+.pagina_inat {
+    display: flex;
+    justify-content: center; /* Alinha os elementos horizontalmente no centro */
+    align-items: center; /* Alinha os elementos verticalmente no centro */
+    height: 125%; /* 100% da altura da janela de visualização */
+    margin-top: 10px;
+}
+
+/* Estilo_inat para o conteúdo */
+.conteudo_inat {
+    background-color: white;
+    width: 90%; /* Definir a largura como 90% */
+    max-width: 500px; /* Limitar a largura máxima */
+    padding: 20px; /* Adicionar preenchimento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilo para o título */
+.conteudo_inat h1 {
+    text-align: center; /* Alinha o texto ao centro */
+    margin-bottom: 10px; /* Adiciona espaço inferior */
+}
+
+/* Estilo para a linha horizontal */
+.conteudo_inat hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc; /* Cor da linha */
+    margin: 10px 0; /* Adiciona espaço superior e inferior */
+}

@@ -1,0 +1,23 @@
+.low-stock {
+    color: red;
+}
+
+
+.pagina {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.conteudo {
+    margin: auto;
+    background-color: white;
+    width: auto; /* Definir a largura como automática */
+    max-width: 500px; /* Limitar a largura máxima */
+    border-radius: 20px;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column; /* Organizar os elementos verticalmente */
+    align-items: center; /* Alinhar horizontalmente no centro */
+    min-height: 300px; /* Definir a altura mínima */
+}

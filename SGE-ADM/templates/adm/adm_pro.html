@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionário</title>
+    <!-- Adicione o link para a biblioteca Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Link para o seu arquivo de estilo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_ver_mov.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+</head>
+<body>
+
+    <div class="header">
+        <img class="logo" src="{{ url_for('static', filename='img/logo/maxi.png') }}" alt="Logo Maxi">
+    </div>
+
+    <!-- Menu horizontal -->
+    <ul class="horizontal-menu">
+        <li><a href="{{ url_for('adm_index_bp.index') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <!-- Funcioários -->
+        <li class="submenu"><a href="#"><i class="fas fa-users"></i><span>Funcioários</span></a>
+            <!-- Submenu para administrar Funcioários e Funcionários -->
+            <ul>
+                <li><a href="{{ url_for('adm_func_bp.exibir_funcionarios') }}">Administrar Funcionários</a></li>
+                <li><a href="{{ url_for('cad_func_bp.cadastro_funcionario') }}">Cadastrar Funcionário</a></li>
+            </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="submenu"><a href="#"><i class="fas fa-box"></i><span>Produtos</span></a>
+            <!-- Submenu para cadastrar produtos e administrar produtos -->
+            <ul>
+                <li><a href="{{ url_for('cad_pro_bp.cadastro_produto') }}">Cadastrar Produto</a></li>
+                <li><a href="{{ url_for('cad_classe_bp.cadastro_classe') }}">Cadastrar Classe de Produtos</a></li>
+                <li><a href="{{ url_for('cad_marca_bp.cadastro_marca') }}">Cadastrar marca de Produtos</a></li>
+                <li><a href="{{ url_for('cad_CA_bp.cadastro_CA') }}">Cadastrar CA de Produtos</a></li>
+                <li><a href="{{ url_for('adm_pro_bp.produtos_cadastrados') }}">Produtos Cadastrados</a></li>
+            </ul>
+        </li>
+        <!-- Movimentações de estoque -->
+        <li class="submenu"><a href="#"><i class="fas fa-random"></i><span>Movimentações de estoque
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('movimento_man_bp.registrar_movimento') }}">Movimento Manual</a></li>
+            <li><a href="{{ url_for('adm_mov_bp.verificar_movimentos') }}">Verificar Movimentos</a></li>
+            <li><a href="{{ url_for('adm_mov_func_bp.movimentos_funcionario') }}">Movimentos de Funcionários</a></li>
+        </ul>
+        <!--Solicitações -->
+        <li class="submenu"><a href="#"><i class="fas fa-list-alt"></i><span>Solicitações
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('solic_epi_bp.nova_solicitacao') }}">Solicitar EPI</a></li>
+        </ul>
+    </ul>
+    
+    <div class="pagina">
+        <div class="conteudo">
+            <h1>Produtos Cadastrados</h1>
+            <!-- Adicionar o campo de busca -->
+            <center>Pesquisar Produtos: <input type="text" id="searchProdutos" onkeyup="searchFunctionProdutos()" placeholder="Digite o nome do produto..."></center><br><br>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Produto</th>
+                        <th>Estoque</th>
+                        <th>Classe</th>
+                        <th>Marca</th>
+                        <th>CA</th>
+                    </tr>
+                </thead>
+                <tbody id="produtosTable">
+                    {% for produto in produtos %}
+                    <tr>
+                        <td><a href="{{ url_for('perf_pro_bp.detalhes_produto', produto_id=produto[0]) }}">{{ produto[1] }}</a></td>
+                        <td>{{ produto[2] }}</td>
+                        <td>{{ produto[3] }}</td>
+                        <td>{{ produto[4] }}</td>
+                        <td>{{ produto[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function searchFunctionProdutos() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchProdutos");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("produtosTable");
+            tr = table.getElementsByTagName("tr");
+    
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; 
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionário</title>
+    <!-- Adicione o link para a biblioteca Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Link para o seu arquivo de estilo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_ver_mov.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+</head>
+<body>
+
+    <div class="header">
+        <img class="logo" src="{{ url_for('static', filename='img/logo/maxi.png') }}" alt="Logo Maxi">
+    </div>
+
+    <!-- Menu horizontal -->
+    <ul class="horizontal-menu">
+        <li><a href="{{ url_for('adm_index_bp.index') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <!-- Funcioários -->
+        <li class="submenu"><a href="#"><i class="fas fa-users"></i><span>Funcioários</span></a>
+            <!-- Submenu para administrar Funcioários e Funcionários -->
+            <ul>
+                <li><a href="{{ url_for('adm_func_bp.exibir_funcionarios') }}">Administrar Funcionários</a></li>
+                <li><a href="{{ url_for('cad_func_bp.cadastro_funcionario') }}">Cadastrar Funcionário</a></li>
+            </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="submenu"><a href="#"><i class="fas fa-box"></i><span>Produtos</span></a>
+            <!-- Submenu para cadastrar produtos e administrar produtos -->
+            <ul>
+                <li><a href="{{ url_for('cad_pro_bp.cadastro_produto') }}">Cadastrar Produto</a></li>
+                <li><a href="{{ url_for('cad_classe_bp.cadastro_classe') }}">Cadastrar Classe de Produtos</a></li>
+                <li><a href="{{ url_for('cad_marca_bp.cadastro_marca') }}">Cadastrar marca de Produtos</a></li>
+                <li><a href="{{ url_for('cad_CA_bp.cadastro_CA') }}">Cadastrar CA de Produtos</a></li>
+                <li><a href="{{ url_for('adm_pro_bp.produtos_cadastrados') }}">Produtos Cadastrados</a></li>
+            </ul>
+        </li>
+        <!-- Movimentações de estoque -->
+        <li class="submenu"><a href="#"><i class="fas fa-random"></i><span>Movimentações de estoque
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('movimento_man_bp.registrar_movimento') }}">Movimento Manual</a></li>
+            <li><a href="{{ url_for('adm_mov_bp.verificar_movimentos') }}">Verificar Movimentos</a></li>
+            <li><a href="{{ url_for('adm_mov_func_bp.movimentos_funcionario') }}">Movimentos de Funcionários</a></li>
+        </ul>
+        <!--Solicitações -->
+        <li class="submenu"><a href="#"><i class="fas fa-list-alt"></i><span>Solicitações
+        </span></a>
+        <ul>
+            <li><a href="{{ url_for('solic_epi_bp.nova_solicitacao') }}">Solicitar EPI</a></li>
+        </ul>
+    </ul>
+
+    <div class="pagina">
+        <div class="conteudo">
+            <h1>Selecionar Funcionário</h1>
+            <form method="post" action="{{ url_for('adm_mov_func_bp.movimentos_funcionario') }}" onsubmit="return validarSelecao()">
+                <label for="funcionarios">Selecione os funcionários:</label><br>
+                <input type="text" id="search" onkeyup="searchFunction()" placeholder="Pesquisar funcionários...">
+                <select name="funcionarios" id="funcionarios">
+                    <option value="" disabled selected>Selecione um funcionário</option>
+                    {% for funcionario in funcionarios %}
+                    <option value="{{ funcionario[0] }}">{{ funcionario[1] }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <input type="submit" value="Mostrar Movimentos">
+            </form>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Produto ID</th>
+                        <th>Entrada</th>
+                        <th>Saída</th>
+                        <th>Data Movimentação</th>
+                        <th>Tipo de movimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimento in movimentos %}
+                    <tr>
+                        <td>{{ movimento[0] }}</td>
+                        <td>{{ movimento[1] }}</td>
+                        <td>{{ movimento[2] }}</td>
+                        <td>{{ movimento[3] }}</td>
+                        <td>{{ movimento[4] }}</td>
+                        <td>{{ movimento[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+    function validarSelecao() {
+        var select = document.getElementById('funcionarios');
+        var selectedValue = select.value;
+        if (selectedValue === '') {
+            alert('Por favor, selecione um funcionário.');
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+    
+    function searchFunction() {
+        var input, filter, select, options, option, i, txtValue;
+        input = document.getElementById('search');
+        filter = input.value.toUpperCase();
+        select = document.getElementById('funcionarios');
+        options = select.getElementsByTagName('option');
+        for (i = 0; i < options.length; i++) {
+            option = options[i];
+            txtValue = option.textContent || option.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                option.style.display = "";
+            } else {
+                option.style.display = "none";
+            }
+        }
+    }
+    </script>
+    
+    </body>
+    </html>
